@@ -7,11 +7,15 @@ import javafx.scene.control.ListView
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonController
 
 import javax.annotation.Nonnull
+import javax.inject.Inject
 
 @ArtifactProviderFor(GriffonController)
 class FeedController extends AbstractGriffonController {
     FeedModel model
     FeedView view
+
+    @Inject
+    RedditService reddit
 
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
@@ -19,7 +23,7 @@ class FeedController extends AbstractGriffonController {
         view = args.get 'view'
 
         view.lvFeed.with {
-            items = model.feedList.content
+            items = reddit.feedList.content
             cellFactory = { ListView<String> param ->
                 return new FeedCell()
             }

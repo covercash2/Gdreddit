@@ -21,13 +21,9 @@ class MainView extends AbstractJavaFXGriffonView {
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
 
-        MVCGroup navbarGroup = createMVCGroup('navbar',
-                feedList: model.feedList
-        )
-        MVCGroup feedGroup = createMVCGroup('feed',
-                feedList: model.feedList
-        )
-        MVCGroup sidbarGroup = createMVCGroup('sidebar')
+        MVCGroup navbarGroup = createMVCGroup('navbar')
+        MVCGroup feedGroup = createMVCGroup('feed')
+        MVCGroup sidebarGroup = createMVCGroup('sidebar')
     }
 
     void initUI() {
