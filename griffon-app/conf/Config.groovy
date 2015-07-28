@@ -11,6 +11,12 @@ mvcGroups {
         controller  = 'com.github.covercash2.gdreddit.MainController'
     }
 
+    'login' {
+        model       = 'com.github.covercash2.gdreddit.LoginModel'
+        view        = 'com.github.covercash2.gdreddit.LoginView'
+        controller  = 'com.github.covercash2.gdreddit.LoginController'
+    }
+
     'feed' {
         model       = 'com.github.covercash2.gdreddit.FeedModel'
         view        = 'com.github.covercash2.gdreddit.FeedView'
