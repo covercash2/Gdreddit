@@ -1,6 +1,7 @@
 package com.github.covercash2.gdreddit
 
 import griffon.core.artifact.GriffonView
+import griffon.core.mvc.MVCGroup
 import griffon.metadata.ArtifactProviderFor
 import javafx.scene.Scene
 import javafx.scene.layout.BorderPane
@@ -16,8 +17,8 @@ class MainView extends AbstractJavaFXGriffonView {
 
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
-        createMVCGroup('feed')
-        createMVCGroup('navbar')
+        MVCGroup navbarGroup = createMVCGroup('navbar')
+        MVCGroup feedGroup = createMVCGroup('feed', model: navbarGroup.model)
     }
 
     void initUI() {

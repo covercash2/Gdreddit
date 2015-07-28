@@ -16,7 +16,7 @@ mvcGroups {
     }
 
     'navbar' {
-        model       = 'com.github.covercash2.gdreddit.NavBarModel'
+        model       = 'com.github.covercash2.gdreddit.FeedModel'
         view        = 'com.github.covercash2.gdreddit.NavBarView'
         controller  = 'com.github.covercash2.gdreddit.NavBarController'
     }
