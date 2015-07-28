@@ -2,6 +2,7 @@ package com.github.covercash2.gdreddit
 
 import griffon.core.artifact.GriffonView
 import griffon.metadata.ArtifactProviderFor
+import javafx.scene.control.Control
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
@@ -24,6 +25,11 @@ class FeedView extends AbstractJavaFXGriffonView {
         connectActions(builder.content, controller)
 
         ScrollPane scrollPane = builder.content
+
+        scrollPane.with {
+            fitToWidth = true
+            fitToHeight = true
+        }
 
         lvFeed = scrollPane.content as ListView
 

@@ -22,7 +22,6 @@ class NavBarController extends AbstractGriffonController {
         view = args.get 'view'
 
         bReload.onAction =  {
-            println "test"
             model.addBullshit(5, 'maybe not bullshit')
         }
     }
