@@ -20,4 +20,10 @@ mvcGroups {
         view        = 'com.github.covercash2.gdreddit.NavBarView'
         controller  = 'com.github.covercash2.gdreddit.NavBarController'
     }
+
+    'sidebar' {
+        model       = 'com.github.covercash2.gdreddit.FeedModel'
+        view        = 'com.github.covercash2.gdreddit.SideBarView'
+        controller  = 'com.github.covercash2.gdreddit.SideBarController'
+    }
 }
