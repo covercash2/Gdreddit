@@ -8,6 +8,7 @@ mvcGroups {
     'main' {
         model       = 'com.github.covercash2.gdreddit.MainModel'
         view        = 'com.github.covercash2.gdreddit.MainView'
+        controller  = 'com.github.covercash2.gdreddit.MainController'
     }
 
     'feed' {
