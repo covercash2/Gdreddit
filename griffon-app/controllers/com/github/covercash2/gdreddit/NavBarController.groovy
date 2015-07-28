@@ -3,6 +3,7 @@ package com.github.covercash2.gdreddit
 import griffon.core.artifact.GriffonController
 import griffon.metadata.ArtifactProviderFor
 import griffon.transform.Threading
+import javafx.collections.ObservableList
 import javafx.scene.control.Button
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonController
 
@@ -10,7 +11,7 @@ import javax.annotation.Nonnull
 
 @ArtifactProviderFor(GriffonController)
 class NavBarController extends AbstractGriffonController {
-    FeedModel model
+    NavBarModel model
     NavBarView view
 
     Button bReload
@@ -21,8 +22,10 @@ class NavBarController extends AbstractGriffonController {
         model = args.get 'model'
         view = args.get 'view'
 
+        FeedList feedList = args.get('feedList') as FeedList
+
         bReload.onAction =  {
-            model.addBullshit(5, 'maybe not bullshit')
+            feedList.addBullshit(10, 'new bullshit')
         }
     }
 }

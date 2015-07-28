@@ -12,11 +12,12 @@ import javax.annotation.Nonnull
 
 @ArtifactProviderFor(GriffonModel)
 class FeedModel extends AbstractGriffonModel {
-    @FXObservable ObservableList feedList = FXCollections.observableArrayList()
+    FeedList feedList
 
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
         println 'FeedModel init'
+        feedList = args.get('feedList') as FeedList
     }
 
     void addBullshit(@Nonnull int num, String msg) {

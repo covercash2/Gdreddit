@@ -2,6 +2,7 @@ package com.github.covercash2.gdreddit
 
 import griffon.core.artifact.GriffonController
 import griffon.metadata.ArtifactProviderFor
+import javafx.collections.ObservableList
 import javafx.scene.control.ListView
 import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonController
 
@@ -17,10 +18,8 @@ class FeedController extends AbstractGriffonController {
         model = args.get 'model'
         view = args.get 'view'
 
-        model.feedList.addAll(generateBullshit(10))
-
         view.lvFeed.with {
-            items = model.feedList
+            items = model.feedList.content
             cellFactory = { ListView<String> param ->
                 return new FeedCell()
             }

@@ -1,11 +1,12 @@
 application {
-    title = 'reddit'
+    title = 'gdreddit'
     startupGroups = ['main']
     autoShutdown = true
 }
 mvcGroups {
     // MVC Group for "main"
     'main' {
+        model       = 'com.github.covercash2.gdreddit.MainModel'
         view        = 'com.github.covercash2.gdreddit.MainView'
     }
 
@@ -16,7 +17,7 @@ mvcGroups {
     }
 
     'navbar' {
-        model       = 'com.github.covercash2.gdreddit.FeedModel'
+        model       = 'com.github.covercash2.gdreddit.NavBarModel'
         view        = 'com.github.covercash2.gdreddit.NavBarView'
         controller  = 'com.github.covercash2.gdreddit.NavBarController'
     }

@@ -13,13 +13,21 @@ import javax.annotation.Nonnull
 @ArtifactProviderFor(GriffonView)
 class MainView extends AbstractJavaFXGriffonView {
     FactoryBuilderSupport builder
+
+    MainModel model
+
     BorderPane mainView
 
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
-        MVCGroup navbarGroup = createMVCGroup('navbar')
-        MVCGroup feedGroup = createMVCGroup('feed', model: navbarGroup.model)
-        MVCGroup sidbarGroup = createMVCGroup('sidebar', model: navbarGroup.model)
+
+        MVCGroup navbarGroup = createMVCGroup('navbar',
+                feedList: model.feedList
+        )
+        MVCGroup feedGroup = createMVCGroup('feed',
+                feedList: model.feedList
+        )
+        MVCGroup sidbarGroup = createMVCGroup('sidebar')
     }
 
     void initUI() {
@@ -35,4 +43,6 @@ class MainView extends AbstractJavaFXGriffonView {
 
         application.windowManager.attach("mainWindow", stage)
     }
+
+
 }
