@@ -68,6 +68,7 @@ dependencies {
     functionalTestCompile "org.codehaus.griffon:griffon-javafx-test:${griffon.version}"
 
     compile project(':Greddit')
+    compile 'org.apache.commons:commons-lang3:3.4'
 }
 
 tasks.withType(JavaCompile) {
