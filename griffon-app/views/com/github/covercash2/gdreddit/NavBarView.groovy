@@ -19,6 +19,7 @@ class NavBarView extends AbstractJavaFXGriffonView {
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
         println 'NavBarView init'
+        model.parentView = parentView
     }
 
     void initUI() {
@@ -27,8 +28,12 @@ class NavBarView extends AbstractJavaFXGriffonView {
         builder.with {
             content = hbox(spacing: 20) {
                 button(
-                    text: 'Reload',
-                    onAction: controller.reload
+                        text: 'Reload',
+                        onAction: controller.reload
+                )
+                button(
+                        text: 'Login',
+                        onAction: controller.login
                 )
             }
         }

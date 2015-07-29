@@ -22,4 +22,9 @@ class NavBarController extends AbstractGriffonController {
     def reload = {
         reddit.feedList.addBullshit(10, 'new bullshit')
     }
+
+    def login = {
+        model.parentView.destroyMainActivity()
+        model.parentView.startLoginActivity()
+    }
 }

@@ -7,4 +7,5 @@ import org.codehaus.griffon.runtime.core.artifact.AbstractGriffonModel
 
 @ArtifactProviderFor(GriffonModel)
 class NavBarModel extends AbstractGriffonModel {
+    MainView parentView
 }
