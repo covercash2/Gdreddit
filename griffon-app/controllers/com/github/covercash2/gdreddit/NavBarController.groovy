@@ -13,20 +13,13 @@ import javax.inject.Inject
 @ArtifactProviderFor(GriffonController)
 class NavBarController extends AbstractGriffonController {
     NavBarModel model
-    NavBarView view
 
     @Inject
     RedditService reddit
 
     Button bReload
-    @Override
-    void mvcGroupInit(@Nonnull Map<String, Object> args) {
-        println 'NavBarController init'
-        model = args.get 'model'
-        view = args.get 'view'
 
-        bReload.onAction =  {
-            reddit.feedList.addBullshit(10, 'new bullshit')
-        }
+    def reload = {
+        reddit.feedList.addBullshit(10, 'new bullshit')
     }
 }

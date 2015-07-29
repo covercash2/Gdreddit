@@ -23,14 +23,16 @@ class NavBarView extends AbstractJavaFXGriffonView {
 
     void initUI() {
         println 'NavBarView initUI'
-        builder.with {
-            content = builder.fxml(resource('/com/github/covercash2/gdreddit/navbar.fxml')) {
 
+        builder.with {
+            content = hbox(spacing: 20) {
+                button(
+                    text: 'Reload',
+                    onAction: controller.reload
+                )
             }
         }
         controller.bReload = builder.content.children[0] as Button
-
-        connectActions(builder.content, controller)
 
         // add view to parent
         parentView.mainView.top = builder.content

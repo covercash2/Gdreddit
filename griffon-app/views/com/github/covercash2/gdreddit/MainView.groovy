@@ -24,8 +24,9 @@ class MainView extends AbstractJavaFXGriffonView {
 
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
-        MVCGroup navbarGroup = createMVCGroup('navbar')
-        MVCGroup loginGroup = createMVCGroup('login')
+        createMVCGroup('navbar')
+
+        startMainActivity()
     }
 
     @Override
@@ -33,9 +34,8 @@ class MainView extends AbstractJavaFXGriffonView {
     }
 
     void startMainActivity() {
-        destroyMVCGroup('login')
-        MVCGroup feedGroup = createMVCGroup('feed')
-        MVCGroup sidebarGroup = createMVCGroup('sidebar')
+        createMVCGroup('feed')
+        createMVCGroup('sidebar')
     }
 
     void initUI() {
