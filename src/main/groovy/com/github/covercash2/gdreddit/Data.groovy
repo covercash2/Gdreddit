@@ -33,6 +33,12 @@ class Data {
     Node box
 
     Data() {
+        ivThumb.with {
+            fitHeight = 48
+            fitWidth = 48
+            preserveRatio = true
+        }
+
         tpContent.with {
             text = 'test'
             content = pContent
