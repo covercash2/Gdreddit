@@ -20,7 +20,8 @@ class NavBarController extends AbstractGriffonController {
     Button bReload
 
     def reload = {
-        reddit.feedList.addBullshit(10, 'new bullshit')
+//        reddit.feedList.addBullshit(10, 'new bullshit')
+        reddit.loadDefaultFeed()
     }
 
     def login = {

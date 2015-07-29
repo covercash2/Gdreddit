@@ -4,6 +4,9 @@ import griffon.core.artifact.GriffonService
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import org.spacehq.reddit.Reddit
+import org.spacehq.reddit.apis.ListingAPI
+import org.spacehq.reddit.data.json.Link
+import org.spacehq.reddit.data.json.Listing
 
 import javax.annotation.Nonnull
 import javax.annotation.PostConstruct
@@ -48,7 +51,19 @@ class RedditService {
         reddit.redditAuth.me(callback, error)
     }
 
-    List getDefaultFeed(Closure callback, Closure errorCallback) {
-        reddit.listing.list(callback, errorCallback)
+    void loadDefaultFeed() {
+        Map query = new HashMap()
+        reddit.listing.list(query, updateList, errorCallback)
+
+    }
+
+    def updateList = { Listing feed ->
+        feed.children.each { Link link ->
+            println link.title
+        }
+    }
+
+    def errorCallback = { Exception e ->
+        e.printStackTrace()
     }
 }
