@@ -49,6 +49,10 @@ class MainView extends AbstractJavaFXGriffonView {
         createMVCGroup('login')
     }
 
+    void destroyLoginActivity() {
+        destroyMVCGroup('login')
+    }
+
     void initUI() {
         Stage stage = application.createApplicationContainer(Collections.<String, Object>emptyMap())
 

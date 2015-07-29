@@ -43,11 +43,20 @@ class LoginView {
                         authenticate()
                     }
                 }
-                button(text: 'login') {
-                    onAction {
-                        authenticate()
+                hbox(spacing: 30, alignment: Pos.CENTER) {
+                    button(text: 'login') {
+                        onAction {
+                            authenticate()
+                        }
+                    }
+                    button(text: 'cancel') {
+                        onAction {
+                            parentView.startMainActivity()
+                            parentView.destroyLoginActivity()
+                        }
                     }
                 }
+
             }
         }
 
