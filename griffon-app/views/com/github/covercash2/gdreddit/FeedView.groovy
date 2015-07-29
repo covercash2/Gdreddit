@@ -18,14 +18,10 @@ class FeedView extends AbstractJavaFXGriffonView {
 
     void initUI() {
         builder.with {
-            content = builder.with {
-                scrollPane {
+            content =  scrollPane {
                     listView()
                 }
-            }
         }
-
-        connectActions(builder.content, controller)
 
         ScrollPane scrollPane = builder.content
 

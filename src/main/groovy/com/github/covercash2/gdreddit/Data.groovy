@@ -1,36 +1,36 @@
 package com.github.covercash2.gdreddit
 
+import griffon.transform.FXObservable
 import javafx.fxml.FXML
 import javafx.fxml.FXMLLoader
 import javafx.scene.Node
 import javafx.scene.control.Label
+import javafx.scene.layout.HBox
 
 /**
  * Created by covercash on 7/26/15.
  */
 class Data {
-    FactoryBuilderSupport builder
+    @FXObservable String title
+    @FXObservable String author
+    @FXObservable String score
 
-    @FXML
-    Label label1
-    @FXML
-    Label label2
-    @FXML
+    Label lTitle
+    Label lAuthor
+    Label lScore
+
     Node box
-    String string = ''
 
     Data() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource('/com/github/covercash2/gdreddit/feedCell.fxml'))
-        loader.controller = this
-        try {
-            loader.load()
-        } catch (IOException e) {
-            throw new RuntimeException(e) //TODO handle
-        }
-    }
+        lTitle = new Label()
+        lAuthor = new Label()
+        lScore = new Label()
 
-    void setInfo(String string) {
-        label1.setText(string)
-        label2.setText(string)
+        box = new HBox(spacing: 10)
+        box.children.addAll([
+                lScore,
+                lTitle,
+                lAuthor
+        ])
     }
 }

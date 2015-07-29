@@ -24,6 +24,8 @@ class RedditService {
 
     Reddit reddit
 
+    Listing currentListing
+
     @PostConstruct
     void init() {
         println 'test service'
@@ -58,8 +60,9 @@ class RedditService {
     }
 
     def updateList = { Listing feed ->
-        feed.children.each { Link link ->
-            println link.title
+        feedList.content.with {
+            clear()
+            addAll(feed.children)
         }
     }
 
