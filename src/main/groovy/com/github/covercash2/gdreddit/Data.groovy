@@ -11,10 +11,6 @@ import javafx.scene.layout.HBox
  * Created by covercash on 7/26/15.
  */
 class Data {
-    @FXObservable String title
-    @FXObservable String author
-    @FXObservable String score
-
     Label lTitle
     Label lAuthor
     Label lScore
