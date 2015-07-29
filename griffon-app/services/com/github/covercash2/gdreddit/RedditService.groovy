@@ -47,4 +47,8 @@ class RedditService {
 
         reddit.redditAuth.me(callback, error)
     }
+
+    List getDefaultFeed(Closure callback, Closure errorCallback) {
+        reddit.listing.list(callback, errorCallback)
+    }
 }

@@ -18,7 +18,10 @@ class FeedView extends AbstractJavaFXGriffonView {
 
     void initUI() {
         builder.with {
-            content = builder.fxml(resource('/com/github/covercash2/gdreddit/feed.fxml')) {
+            content = builder.with {
+                scrollPane {
+                    listView()
+                }
             }
         }
 
