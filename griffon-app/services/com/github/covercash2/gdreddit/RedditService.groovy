@@ -5,7 +5,9 @@ import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import org.spacehq.reddit.Reddit
 
+import javax.annotation.Nonnull
 import javax.annotation.PostConstruct
+import javax.annotation.PreDestroy
 
 /**
  * Created by covercash on 7/28/15.
@@ -27,15 +29,22 @@ class RedditService {
 
         reddit.globalErrorHandler = {
             it.printStackTrace()
-            reddit.dispose()
-        }
-
-        // login
-        reddit.redditAuth.login("covercash2", "astros9009", false)
-
-        reddit.redditAuth.me {
             println it
             reddit.dispose()
         }
+    }
+
+    @PreDestroy
+    void destroy() {
+        reddit.dispose()
+    }
+
+    void authenticate(@Nonnull String username,
+                      @Nonnull String password,
+                      @Nonnull Closure callback,
+                      Closure error) {
+        reddit.redditAuth.login(username, password, false)
+
+        reddit.redditAuth.me(callback, error)
     }
 }

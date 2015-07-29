@@ -9,6 +9,7 @@ import javafx.stage.Stage
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
 
 import javax.annotation.Nonnull
+import javax.inject.Inject
 
 @ArtifactProviderFor(GriffonView)
 class MainView extends AbstractJavaFXGriffonView {
@@ -18,13 +19,21 @@ class MainView extends AbstractJavaFXGriffonView {
 
     BorderPane mainView
 
+    @Inject
+    RedditService reddit
+
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
+        MVCGroup navbarGroup = createMVCGroup('navbar')
         MVCGroup loginGroup = createMVCGroup('login')
     }
 
+    @Override
+    void mvcGroupDestroy() {
+    }
+
     void startMainActivity() {
-        MVCGroup navbarGroup = createMVCGroup('navbar')
+        destroyMVCGroup('login')
         MVCGroup feedGroup = createMVCGroup('feed')
         MVCGroup sidebarGroup = createMVCGroup('sidebar')
     }
