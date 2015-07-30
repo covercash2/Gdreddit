@@ -42,8 +42,6 @@ class FeedCell extends ListCell<Link> {
                 lSubreddit.text = '/r/' + link.subreddit
             }
 
-            println link.thumbnail
-
             if (link.thumbnail) {
                 try {
                     Image thumb = new Image(link.thumbnail, true)

@@ -31,6 +31,8 @@ class Data {
     Node box
 
     Data() {
+        hlTitle.wrapTextProperty().set(true)
+
         // score pane
         VBox scoreBox = new VBox()
         scoreBox.with {
@@ -85,6 +87,7 @@ class Data {
 
     void addContent(String content) {
         pContent.children.add(new Label(content))
+        showContent()
     }
 
     void addHtml(Pane root, String url, boolean javascript) {
@@ -92,6 +95,7 @@ class Data {
         web.getEngine().load(url)
         web.engine.setJavaScriptEnabled(javascript)
         root.children.add(web)
+        showContent()
     }
 
     void addHtmlContent(String content, boolean javascript) {
@@ -99,5 +103,10 @@ class Data {
         web.getEngine().loadContent(content)
         web.engine.setJavaScriptEnabled(javascript)
         pContent.children.add(web)
+        showContent()
+    }
+
+    private void showContent() {
+        tpContent.visibleProperty().set(true)
     }
 }
