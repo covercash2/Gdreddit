@@ -1,9 +1,12 @@
 package com.github.covercash2.gdreddit
 
+import com.github.covercash2.gdreddit.com.github.covercash2.gdreddit.javafx.view.SideBar
 import griffon.core.artifact.GriffonView
 import griffon.metadata.ArtifactProviderFor
 import javafx.scene.control.Button
+import javafx.scene.control.Label
 import javafx.scene.layout.HBox
+import javafx.scene.layout.VBox
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
 
 import javax.annotation.Nonnull
@@ -36,18 +39,36 @@ class NavBarView extends AbstractJavaFXGriffonView {
             onAction = controller.login
         }
 
+        // configure side bar
+        VBox sidebarContent = new VBox()
+        sidebarContent.with {
+            spacing = 10
+            children.addAll([
+                    new Label('test text')
+            ])
+        }
+        SideBar sidebar = new SideBar(250, sidebarContent)
+
+        Button bExpander = sidebar.controlButton
+
         HBox mainBox = new HBox()
         mainBox.with {
             spacing = 20
             children.addAll([
                     bReload,
                     bLogin,
+                    bExpander
             ])
         }
 
+
         controller.bReload = bReload
 
-        // add view to parent
-        parentView.mainView.top = mainBox
+        // add views to parent
+        parentView.mainView.with {
+            top = mainBox
+            right = sidebar
+        }
     }
+
 }
