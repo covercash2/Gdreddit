@@ -3,6 +3,7 @@ package com.github.covercash2.gdreddit
 import griffon.core.artifact.GriffonView
 import griffon.metadata.ArtifactProviderFor
 import javafx.scene.control.Button
+import javafx.scene.layout.HBox
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
 
 import javax.annotation.Nonnull
@@ -23,23 +24,30 @@ class NavBarView extends AbstractJavaFXGriffonView {
     }
 
     void initUI() {
-        println 'NavBarView initUI'
-
-        builder.with {
-            content = hbox(spacing: 20) {
-                button(
-                        text: 'Reload',
-                        onAction: controller.reload
-                )
-                button(
-                        text: 'Login',
-                        onAction: controller.login
-                )
-            }
+        Button bReload = new Button()
+        bReload.with {
+            text = 'Reload'
+            onAction = controller.reload
         }
-        controller.bReload = builder.content.children[0] as Button
+
+        Button bLogin = new Button()
+        bLogin.with {
+            text = 'Login'
+            onAction = controller.login
+        }
+
+        HBox mainBox = new HBox()
+        mainBox.with {
+            spacing = 20
+            children.addAll([
+                    bReload,
+                    bLogin,
+            ])
+        }
+
+        controller.bReload = bReload
 
         // add view to parent
-        parentView.mainView.top = builder.content
+        parentView.mainView.top = mainBox
     }
 }

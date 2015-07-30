@@ -35,12 +35,12 @@ class MainView extends AbstractJavaFXGriffonView {
 
     void startMainActivity() {
         createMVCGroup('feed')
-        createMVCGroup('sidebar')
+//        createMVCGroup('sidebar')
     }
 
     void destroyMainActivity() {
         destroyMVCGroup('feed')
-        destroyMVCGroup('sidebar')
+//        destroyMVCGroup('sidebar')
         mainView.right = null
         mainView.center = null
     }
