@@ -1,5 +1,6 @@
 package com.github.covercash2.gdreddit
 
+import javafx.geometry.Pos
 import javafx.scene.Node
 import javafx.scene.control.Label
 import javafx.scene.control.TitledPane
@@ -29,6 +30,18 @@ class Data {
     Node box
 
     Data() {
+        // score pane
+        VBox scoreBox = new VBox()
+        scoreBox.with {
+            children.addAll([
+                    new Label('^'),
+                    lScore,
+                    new Label('v')
+            ])
+            alignment = Pos.CENTER
+            setMinWidth(50)
+        }
+
         ivThumb.with {
             fitHeight = 48
             fitWidth = 48
@@ -60,7 +73,7 @@ class Data {
 
         HBox mainBox = new HBox(spacing: 10)
         mainBox.children.addAll([
-                lScore,
+                scoreBox,
                 ivThumb,
                 titleBox
         ])
