@@ -1,5 +1,7 @@
 package com.github.covercash2.gdreddit
 
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.scene.control.ListCell
 import javafx.scene.image.Image
 import org.apache.commons.lang3.StringEscapeUtils
@@ -9,6 +11,11 @@ import org.spacehq.reddit.data.json.Link
  * Created by covercash on 7/26/15.
  */
 class FeedCell extends ListCell<Link> {
+
+    def openLink = { String url ->
+        println 'open link ' + url
+    }
+
     @Override
     void updateItem(Link link, boolean empty) {
         super.updateItem(link, empty)
@@ -16,17 +23,19 @@ class FeedCell extends ListCell<Link> {
             Data data = new Data()
 
             data.with {
-                lTitle.text = link.title
+                hlTitle.text = link.title
+                hlTitle.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    void handle(ActionEvent event) {
+                        println 'open link ' + link.url
+                    }
+                })
                 lAuthor.text = '/u/' + link.author
                 lScore.text = link.ups
                 lComments.text = link.num_comments + ' comments'
                 lSelfText.text = link.selftext
                 lSubreddit.text = '/r/' + link.subreddit
             }
-
-            println link.media
-            println link.media_embed
-            println link.secure_media_embed
 
             println link.thumbnail
 

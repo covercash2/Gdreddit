@@ -2,6 +2,7 @@ package com.github.covercash2.gdreddit
 
 import javafx.geometry.Pos
 import javafx.scene.Node
+import javafx.scene.control.Hyperlink
 import javafx.scene.control.Label
 import javafx.scene.control.TitledPane
 import javafx.scene.image.ImageView
@@ -16,7 +17,8 @@ import javafx.scene.web.WebView
 class Data {
     ImageView ivThumb = new ImageView()
 
-    Label lTitle = new Label()
+    Hyperlink hlTitle = new Hyperlink()
+
     Label lAuthor = new Label()
     Label lScore = new Label()
     Label lComments = new Label()
@@ -66,7 +68,7 @@ class Data {
 
         VBox titleBox = new VBox(spacing: 10)
         titleBox.children.addAll([
-                lTitle,
+                hlTitle,
                 detailBox,
                 tpContent
         ])
