@@ -18,11 +18,10 @@ class Data {
     ImageView ivThumb = new ImageView()
 
     Hyperlink hlTitle = new Hyperlink()
+    Hyperlink hlComments = new Hyperlink()
 
     Label lAuthor = new Label()
     Label lScore = new Label()
-    Label lComments = new Label()
-    Label lSelfText = new Label()
     Label lSubreddit = new Label()
 
     TitledPane tpContent = new TitledPane()
@@ -54,6 +53,7 @@ class Data {
             text = 'test'
             content = pContent
             expanded = false
+            visible = false
         }
 
         HBox detailBox = new HBox()
@@ -62,7 +62,7 @@ class Data {
         }
         detailBox.children.addAll([
                 lSubreddit,
-                lComments,
+                hlComments,
                 lAuthor,
         ])
 
@@ -94,10 +94,10 @@ class Data {
         root.children.add(web)
     }
 
-    void addHtmlContent(Pane root, String content, boolean javascript) {
+    void addHtmlContent(String content, boolean javascript) {
         WebView web = new WebView()
         web.getEngine().loadContent(content)
         web.engine.setJavaScriptEnabled(javascript)
-        root.children.add(web)
+        pContent.children.add(web)
     }
 }
