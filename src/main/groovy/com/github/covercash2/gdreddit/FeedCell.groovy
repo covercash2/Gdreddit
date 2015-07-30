@@ -46,6 +46,10 @@ class FeedCell extends ListCell<Link> {
                 data.addHtmlContent(data.pContent, embed, true)
             }
 
+            setWrapText(true)
+
+            prefWidthProperty().bind(listView.widthProperty().subtract(20))
+
             setGraphic(data.box)
         }
     }

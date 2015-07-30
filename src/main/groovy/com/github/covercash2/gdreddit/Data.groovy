@@ -45,7 +45,11 @@ class Data {
             expanded = false
         }
 
-        HBox detailBox = new HBox(spacing: 10)
+        HBox detailBox = new HBox()
+        detailBox.with {
+            spacing = 10
+        }
+
         detailBox.children.addAll([
                 lSubreddit,
                 lComments,
@@ -60,6 +64,9 @@ class Data {
         ])
 
         HBox mainBox = new HBox(spacing: 10)
+
+        mainBox.maxWidth(200.0)
+
         mainBox.children.addAll([
                 lScore,
                 ivThumb,

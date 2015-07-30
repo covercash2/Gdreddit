@@ -5,6 +5,7 @@ import griffon.metadata.ArtifactProviderFor
 import javafx.scene.control.Control
 import javafx.scene.control.ListView
 import javafx.scene.control.ScrollPane
+import javafx.scene.layout.AnchorPane
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
 
 @ArtifactProviderFor(GriffonView)
@@ -17,21 +18,20 @@ class FeedView extends AbstractJavaFXGriffonView {
     ListView lvFeed
 
     void initUI() {
-        builder.with {
-            content =  scrollPane {
-                    listView()
-                }
-        }
 
-        ScrollPane scrollPane = builder.content
+        AnchorPane ap = new AnchorPane()
 
-        scrollPane.with {
-            fitToWidth = true
-            fitToHeight = true
-        }
+        lvFeed = new ListView()
 
-        lvFeed = scrollPane.content as ListView
+        AnchorPane.setBottomAnchor(lvFeed, 0.0)
+        AnchorPane.setLeftAnchor(lvFeed, 0.0)
+        AnchorPane.setTopAnchor(lvFeed, 0.0)
+        AnchorPane.setRightAnchor(lvFeed, 0.0)
 
-        parentView.mainView.center = builder.content
+
+        ap.children.add(lvFeed)
+
+        def mainView = ap
+        parentView.mainView.center = mainView
     }
 }
