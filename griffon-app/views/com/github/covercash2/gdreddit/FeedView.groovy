@@ -2,9 +2,7 @@ package com.github.covercash2.gdreddit
 
 import griffon.core.artifact.GriffonView
 import griffon.metadata.ArtifactProviderFor
-import javafx.scene.control.Control
 import javafx.scene.control.ListView
-import javafx.scene.control.ScrollPane
 import javafx.scene.layout.AnchorPane
 import org.codehaus.griffon.runtime.javafx.artifact.AbstractJavaFXGriffonView
 
@@ -27,7 +25,6 @@ class FeedView extends AbstractJavaFXGriffonView {
         AnchorPane.setLeftAnchor(lvFeed, 0.0)
         AnchorPane.setTopAnchor(lvFeed, 0.0)
         AnchorPane.setRightAnchor(lvFeed, 0.0)
-
 
         ap.children.add(lvFeed)
 

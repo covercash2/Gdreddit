@@ -1,10 +1,6 @@
 package com.github.covercash2.gdreddit
 
-import griffon.transform.FXObservable
-import javafx.fxml.FXML
-import javafx.fxml.FXMLLoader
 import javafx.scene.Node
-import javafx.scene.Parent
 import javafx.scene.control.Label
 import javafx.scene.control.TitledPane
 import javafx.scene.image.ImageView
@@ -49,7 +45,6 @@ class Data {
         detailBox.with {
             spacing = 10
         }
-
         detailBox.children.addAll([
                 lSubreddit,
                 lComments,
@@ -64,9 +59,6 @@ class Data {
         ])
 
         HBox mainBox = new HBox(spacing: 10)
-
-        mainBox.maxWidth(200.0)
-
         mainBox.children.addAll([
                 lScore,
                 ivThumb,
