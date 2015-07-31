@@ -3,6 +3,8 @@ package com.github.covercash2.gdreddit
 import com.github.covercash2.gdreddit.com.github.covercash2.gdreddit.javafx.view.SideBar
 import griffon.core.artifact.GriffonView
 import griffon.metadata.ArtifactProviderFor
+import javafx.event.ActionEvent
+import javafx.event.EventHandler
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.HBox
@@ -30,13 +32,13 @@ class NavBarView extends AbstractJavaFXGriffonView {
         Button bReload = new Button()
         bReload.with {
             text = 'Reload'
-            onAction = controller.reload
+            onAction = getEventHandler(controller.reload)
         }
 
         Button bLogin = new Button()
         bLogin.with {
             text = 'Login'
-            onAction = controller.login
+            onAction = getEventHandler(controller.login)
         }
 
         // configure side bar
@@ -54,7 +56,7 @@ class NavBarView extends AbstractJavaFXGriffonView {
         Button bLoadSideBar = new Button()
         bLoadSideBar.with {
             text = 'load'
-            onAction = controller.loadSideBar
+            onAction = getEventHandler(controller.loadSideBar, sidebar)
         }
 
         HBox mainBox = new HBox()
@@ -78,4 +80,12 @@ class NavBarView extends AbstractJavaFXGriffonView {
         }
     }
 
+    static EventHandler<ActionEvent> getEventHandler(Closure action, Object... args) {
+        return new EventHandler<ActionEvent>() {
+            @Override
+            void handle(ActionEvent event) {
+                action.call(args)
+            }
+        }
+    }
 }

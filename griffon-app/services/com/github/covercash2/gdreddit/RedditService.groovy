@@ -7,6 +7,7 @@ import org.spacehq.reddit.Reddit
 import org.spacehq.reddit.apis.ListingAPI
 import org.spacehq.reddit.data.json.Link
 import org.spacehq.reddit.data.json.Listing
+import org.spacehq.reddit.data.json.Subreddit
 
 import javax.annotation.Nonnull
 import javax.annotation.PostConstruct
@@ -25,6 +26,7 @@ class RedditService {
     Reddit reddit
 
     Listing currentListing
+    Subreddit currentSubreddit
 
     @PostConstruct
     void init() {
@@ -59,16 +61,19 @@ class RedditService {
 
     }
 
-    void loadSideBar() {
-        def callback = {
-            println it
+    void loadSideBar(Closure optionalCallback = null, Closure optionalError = null) {
+        def callback = { Subreddit sub ->
+            currentSubreddit = sub
+            optionalCallback?.call(sub)
         }
 
         def error = { Exception e ->
             e.printStackTrace()
+            optionalError?.call(e)
         }
 
-        reddit.subreddit.about('videos', callback, error)
+        callback.call(new Subreddit([description: 'description, yay!']))
+//        reddit.subreddit.about('videos', callback, error)
     }
 
     def updateList = { Listing feed ->
