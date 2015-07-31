@@ -42,26 +42,23 @@ class NavBarView extends AbstractJavaFXGriffonView {
         }
 
         // configure side bar
-        VBox sidebarContent = new VBox()
-        sidebarContent.with {
-            spacing = 10
-            children.addAll([
-                    new Label('test text')
-            ])
-        }
-        SideBar sidebar = new SideBar(250, sidebarContent)
-
         Label lDescription = new Label()
         lDescription.with {
             text = 'text'
         }
+
+        // bind the subreddit description label to the model
         model.subredditDescription = lDescription.textProperty()
 
-        sidebar.with {
+        VBox sidebarContent = new VBox()
+        sidebarContent.with {
+            spacing = 10
             children.addAll([
-                lDescription
+                    lDescription
             ])
         }
+
+        SideBar sidebar = new SideBar(250, sidebarContent)
 
         Button bExpander = sidebar.controlButton
 
