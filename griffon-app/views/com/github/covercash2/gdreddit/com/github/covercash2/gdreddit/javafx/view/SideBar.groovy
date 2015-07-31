@@ -1,5 +1,7 @@
 package com.github.covercash2.gdreddit.com.github.covercash2.gdreddit.javafx.view
 
+import com.github.covercash2.gdreddit.com.github.covercash2.gdreddit.javafx.view.anim.AnimationUtils
+import com.github.covercash2.gdreddit.javafx.FXUtils
 import javafx.animation.Animation
 import javafx.animation.Transition
 import javafx.event.ActionEvent
@@ -7,6 +9,7 @@ import javafx.event.EventHandler
 import javafx.geometry.Pos
 import javafx.scene.Node
 import javafx.scene.control.Button
+import javafx.scene.control.Control
 import javafx.scene.layout.VBox
 import javafx.util.Duration
 
@@ -31,61 +34,19 @@ class SideBar extends VBox {
         controlButton = new Button('Collapse')
         controlButton.getStyleClass() << 'hide-left'
 
-        controlButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            void handle(ActionEvent e) {
-                final Animation hideSideBar = new Transition() {
-                    { setCycleDuration(Duration.millis(ANIMATION_DURATION)) }
-                    @Override
-                    protected void interpolate(double frac) {
-                        final double curWidth = expandedWidth * (1.0 - frac)
-                        setPrefWidth(curWidth)
-                        setTranslateX(expandedWidth - curWidth)
-                    }
+        // create animations
+        final Animation hideSideBar = AnimationUtils.hideRight(this, expandedWidth)
+
+        final Animation showSideBar = AnimationUtils.showRight(this, expandedWidth)
+
+        controlButton.onAction = FXUtils.getEventHandler({
+            if (AnimationUtils.allStopped(hideSideBar, showSideBar)) {
+                if (visible) {
+                    hideSideBar.play()
+                } else {
+                    setVisible(true)
+                    showSideBar.play()
                 }
-                hideSideBar.onFinishedProperty().set(new EventHandler<ActionEvent>() {
-                    @Override
-                    void handle(ActionEvent event) {
-                        setVisible(false)
-                        controlButton.with {
-                            text = 'Show'
-                            styleClass.remove('hide-left')
-                            styleClass.add('show-right')
-                        }
-                    }
-                })
-
-                final Animation showSideBar = new Transition() {
-                    { setCycleDuration(Duration.millis(ANIMATION_DURATION)) }
-
-                    @Override
-                    protected void interpolate(double frac) {
-                        final double curWidth = expandedWidth * frac
-                        setPrefWidth(curWidth)
-                        setTranslateX(expandedWidth - curWidth)
-                    }
-                }
-                showSideBar.onFinishedProperty().set(new EventHandler<ActionEvent>() {
-                    @Override
-                    void handle(ActionEvent event) {
-                        controlButton.with {
-                            text = 'Collapse'
-                            styleClass.add('hide-left')
-                            styleClass.remove('show-right')
-                        }
-                    }
-                })
-
-                if (showSideBar.statusProperty().get() == Animation.Status.STOPPED &&
-                        hideSideBar.statusProperty().get() == Animation.Status.STOPPED) {
-                    if (visible) {
-                        hideSideBar.play()
-                    } else {
-                        setVisible(true)
-                        showSideBar.play()
-                    }
-                }
-
             }
         })
     }
