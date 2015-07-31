@@ -51,13 +51,20 @@ class NavBarView extends AbstractJavaFXGriffonView {
 
         Button bExpander = sidebar.controlButton
 
+        Button bLoadSideBar = new Button()
+        bLoadSideBar.with {
+            text = 'load'
+            onAction = controller.loadSideBar
+        }
+
         HBox mainBox = new HBox()
         mainBox.with {
             spacing = 20
             children.addAll([
                     bReload,
                     bLogin,
-                    bExpander
+                    bExpander,
+                    bLoadSideBar
             ])
         }
 

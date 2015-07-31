@@ -59,7 +59,20 @@ class RedditService {
 
     }
 
+    void loadSideBar() {
+        def callback = {
+            println it
+        }
+
+        def error = { Exception e ->
+            e.printStackTrace()
+        }
+
+        reddit.subreddit.about('videos', callback, error)
+    }
+
     def updateList = { Listing feed ->
+        currentListing = feed
         feedList.content.with {
             clear()
             addAll(feed.children)
