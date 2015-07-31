@@ -3,14 +3,8 @@ package com.github.covercash2.gdreddit.com.github.covercash2.gdreddit.javafx.vie
 import com.github.covercash2.gdreddit.javafx.FXUtils
 import javafx.animation.Animation
 import javafx.animation.Transition
-import javafx.beans.property.BooleanProperty
-import javafx.event.EventHandler
-import javafx.scene.Node
-import javafx.scene.control.Control
 import javafx.scene.layout.Region
 import javafx.util.Duration
-
-import java.awt.event.ActionEvent
 
 /**
  * Created by covercash on 7/31/15.
@@ -70,7 +64,8 @@ class AnimationUtils {
     }
 
     static boolean allStopped(Animation... animations) {
-        animations.each { isStopped(it) }
+        boolean result = true
+        animations.each { result = result && isStopped(it) }
     }
 
 }
