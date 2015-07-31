@@ -33,13 +33,8 @@ class NavBarController extends AbstractGriffonController {
     }
 
     def loadSideBar = { Pane parentView ->
-        def callback = { Subreddit sub ->
-            sub.each { println it }
-            Label about = new Label()
-            about.with {
-                text = sub.description
-            }
-            parentView.children.add(about)
+        def callback = { Subreddit s ->
+            model.subredditDescription.set(s.description)
         }
 
         reddit.loadSideBar(callback)

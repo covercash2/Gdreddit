@@ -51,6 +51,18 @@ class NavBarView extends AbstractJavaFXGriffonView {
         }
         SideBar sidebar = new SideBar(250, sidebarContent)
 
+        Label lDescription = new Label()
+        lDescription.with {
+            text = 'text'
+        }
+        model.subredditDescription = lDescription.textProperty()
+
+        sidebar.with {
+            children.addAll([
+                lDescription
+            ])
+        }
+
         Button bExpander = sidebar.controlButton
 
         Button bLoadSideBar = new Button()
