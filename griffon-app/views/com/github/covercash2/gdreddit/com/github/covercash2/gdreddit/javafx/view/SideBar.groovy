@@ -35,6 +35,9 @@ class SideBar extends VBox {
 
         controlButton.onAction = FXUtils.getEventHandler({
             if (AnimationUtils.allStopped(hideSideBar, showSideBar)) {
+                /*
+                 * decide whether to show or hide side bar
+                 */
                 if (visible) {
                     hideSideBar.play()
                 } else {

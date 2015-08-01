@@ -22,6 +22,8 @@ class NavBarView extends AbstractJavaFXGriffonView {
 
     MainView parentView
 
+    SideBar mSideBar
+
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
         println 'NavBarView init'
@@ -29,6 +31,8 @@ class NavBarView extends AbstractJavaFXGriffonView {
     }
 
     void initUI() {
+        println 'NavBarView initUI'
+
         Button bReload = new Button()
         bReload.with {
             text = 'Reload'
@@ -58,14 +62,14 @@ class NavBarView extends AbstractJavaFXGriffonView {
             ])
         }
 
-        SideBar sidebar = new SideBar(250, sidebarContent)
+        mSideBar = new SideBar(250, sidebarContent)
 
-        Button bExpander = sidebar.controlButton
+        Button bExpander = mSideBar.controlButton
 
         Button bLoadSideBar = new Button()
         bLoadSideBar.with {
             text = 'load'
-            onAction = getEventHandler(controller.loadSideBar, sidebar)
+            onAction = getEventHandler(controller.loadSideBar, mSideBar)
         }
 
         HBox mainBox = new HBox()
@@ -85,7 +89,7 @@ class NavBarView extends AbstractJavaFXGriffonView {
         // add views to parent
         parentView.mainView.with {
             top = mainBox
-            right = sidebar
+            right = mSideBar
         }
     }
 

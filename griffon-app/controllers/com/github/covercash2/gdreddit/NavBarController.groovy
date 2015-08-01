@@ -32,7 +32,7 @@ class NavBarController extends AbstractGriffonController {
         model.parentView.startLoginActivity()
     }
 
-    def loadSideBar = { Pane parentView ->
+    def loadSideBar = {
         def callback = { Subreddit s ->
             model.subredditDescription.set(s.description)
         }
