@@ -14,6 +14,8 @@ class SideBarView {
 
     MainView parentView
 
+    SideBar sideBar
+
     void initUI() {
 
         VBox contentBox = new VBox()
@@ -24,7 +26,7 @@ class SideBarView {
             ])
         }
 
-        SideBar sideBar = new SideBar(250, contentBox)
+        sideBar = new SideBar(250, contentBox)
         Button bExpander = sideBar.controlButton
 
         VBox mainBox = new VBox()

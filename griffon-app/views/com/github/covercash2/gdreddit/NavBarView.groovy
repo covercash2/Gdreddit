@@ -24,6 +24,8 @@ class NavBarView extends AbstractJavaFXGriffonView {
 
     SideBar mSideBar
 
+    Button bExpander
+
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
         println 'NavBarView init'
@@ -63,8 +65,15 @@ class NavBarView extends AbstractJavaFXGriffonView {
         }
 
         mSideBar = new SideBar(250, sidebarContent)
+        bExpander = mSideBar.controlButton
 
-        Button bExpander = mSideBar.controlButton
+        mSideBar.with {
+            children.with {
+                addAll(
+                        bExpander
+                )
+            }
+        }
 
         Button bLoadSideBar = new Button()
         bLoadSideBar.with {
@@ -78,7 +87,6 @@ class NavBarView extends AbstractJavaFXGriffonView {
             children.addAll([
                     bReload,
                     bLogin,
-                    bExpander,
                     bLoadSideBar
             ])
         }
