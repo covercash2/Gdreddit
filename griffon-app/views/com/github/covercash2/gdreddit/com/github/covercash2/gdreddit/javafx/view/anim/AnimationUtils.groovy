@@ -50,10 +50,28 @@ class AnimationUtils {
                 final double curWidth = expandedWidth * (1.0 - frac)
                 if (curWidth >= minWidth) {
                     region.setPrefWidth(curWidth)
+                } else {
+                    // make sure the width isn't affected by the framerate
+                    region.setPrefWidth(minWidth)
                 }
             }
         }
         return t
+    }
+
+    static Transition showRightPartial(
+            final Region region,
+            final double expandedWidth,
+            final double minWidth) {
+        Transition t = getTransition { double frac ->
+            final double curWidth = expandedWidth * frac + minWidth
+            if (curWidth <= expandedWidth) {
+                region.setPrefWidth(curWidth)
+            } else {
+                // make sure the width isn't affected by the framerate
+                region.setPrefWidth(expandedWidth)
+            }
+        }
     }
 
     static Transition showRight(Region region, final double expandedWidth) {
@@ -74,6 +92,16 @@ class AnimationUtils {
         }))
 
         return t
+    }
+
+    static Transition getTransition(Closure action) {
+        return new Transition() {
+            { setCycleDuration(Duration.millis(ANIMATION_DURATION)) }
+            @Override
+            protected void interpolate(double frac) {
+                action.call(frac)
+            }
+        }
     }
 
     static boolean isStopped(Animation animation) {

@@ -16,7 +16,7 @@ class SideBar extends VBox {
     static final long HIDDEN_WIDTH = 28.0
     Button controlButton
 
-    boolean expanded
+    boolean expanded = true
 
     SideBar(final double expandedWidth, Node nodes) {
         styleClass << 'sidebar'
@@ -39,7 +39,7 @@ class SideBar extends VBox {
             expanded = false
         }))
 
-        final Animation showSideBar = AnimationUtils.showRight(this, expandedWidth)
+        final Animation showSideBar = AnimationUtils.showRightPartial(this, expandedWidth, HIDDEN_WIDTH)
 
         controlButton.onAction = FXUtils.getEventHandler({
             if (AnimationUtils.allStopped(hideSideBar, showSideBar)) {
