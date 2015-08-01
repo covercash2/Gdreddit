@@ -18,7 +18,7 @@ class SideBar extends VBox {
 
     boolean expanded = true
 
-    SideBar(final double expandedWidth, Node nodes) {
+    SideBar(final double expandedWidth, Node... nodes) {
         styleClass << 'sidebar'
 
         setPrefWidth(expandedWidth)
@@ -54,5 +54,7 @@ class SideBar extends VBox {
                 }
             }
         })
+
+        children.add(controlButton)
     }
 }
