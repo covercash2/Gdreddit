@@ -22,10 +22,6 @@ class NavBarView extends AbstractJavaFXGriffonView {
 
     MainView parentView
 
-    SideBar mSideBar
-
-    Button bExpander
-
     @Override
     void mvcGroupInit(@Nonnull Map<String, Object> args) {
         println 'NavBarView init'
@@ -47,42 +43,19 @@ class NavBarView extends AbstractJavaFXGriffonView {
             onAction = getEventHandler(controller.login)
         }
 
-        // configure side bar
-        Label lDescription = new Label()
-        lDescription.with {
-            text = 'text'
-        }
-
-        // bind the subreddit description label to the model
-        model.subredditDescription = lDescription.textProperty()
-
-        mSideBar = new SideBar(250)
-        bExpander = mSideBar.controlButton
-
-        Button bLoadSideBar = new Button()
-        bLoadSideBar.with {
-            text = 'load'
-            onAction = getEventHandler(controller.loadSideBar, mSideBar)
-        }
-
         HBox mainBox = new HBox()
         mainBox.with {
             spacing = 20
             children.addAll([
                     bReload,
                     bLogin,
-                    bLoadSideBar
             ])
         }
-
 
         controller.bReload = bReload
 
         // add views to parent
-        parentView.mainView.with {
-            top = mainBox
-            right = mSideBar
-        }
+        parentView.mainView.top = mainBox
     }
 
     static EventHandler<ActionEvent> getEventHandler(Closure action, Object... args) {

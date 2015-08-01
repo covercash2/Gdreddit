@@ -17,30 +17,9 @@ class SideBarView {
     SideBar sideBar
 
     void initUI() {
+        sideBar = new SideBar(350)
 
-        VBox contentBox = new VBox()
-        contentBox.with {
-            spacing = 10
-            children.addAll([
-                    new Label('test text')
-            ])
-        }
-
-        sideBar = new SideBar(250, contentBox)
-        Button bExpander = sideBar.controlButton
-
-        VBox mainBox = new VBox()
-        mainBox.with {
-            spacing = 10
-            children.addAll([
-                    sideBar.controlButton,
-                    sideBar
-            ])
-        }
-
-        mainBox.stylesheets.add(getClass().getResource('/com/github/covercash2/gdreddit/javafx/view/slideout.css').toExternalForm())
-
-        def content = mainBox
+        def content = sideBar
         parentView.mainView.right = content
     }
 }
