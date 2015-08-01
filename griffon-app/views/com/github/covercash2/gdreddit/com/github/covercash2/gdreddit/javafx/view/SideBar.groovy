@@ -13,24 +13,32 @@ import javafx.scene.layout.VBox
  */
 class SideBar extends VBox {
     static final long ANIMATION_DURATION = 250
+    static final long HIDDEN_WIDTH = 28.0
     Button controlButton
+
+    boolean expanded
 
     SideBar(final double expandedWidth, Node nodes) {
         styleClass << 'sidebar'
 
         setPrefWidth(expandedWidth)
-        setMinWidth(0)
+        setMinWidth(HIDDEN_WIDTH)
 
         // create a bar to hide and show
-        setAlignment(Pos.CENTER)
         children.addAll(nodes)
 
         // create a button to control the sidebar
-        controlButton = new Button('Collapse')
+        controlButton = new Button('<')
         controlButton.getStyleClass() << 'hide-left'
+        controlButton.maxWidth(HIDDEN_WIDTH)
 
         // create animations
-        final Animation hideSideBar = AnimationUtils.hideRight(this, expandedWidth)
+        final Animation hideSideBar = AnimationUtils.hideRightPartial(this, expandedWidth, HIDDEN_WIDTH)
+
+        hideSideBar.onFinishedProperty().set(FXUtils.getEventHandler({
+            expanded = false
+        }))
+
         final Animation showSideBar = AnimationUtils.showRight(this, expandedWidth)
 
         controlButton.onAction = FXUtils.getEventHandler({
@@ -38,10 +46,10 @@ class SideBar extends VBox {
                 /*
                  * decide whether to show or hide side bar
                  */
-                if (visible) {
+                if (expanded) {
                     hideSideBar.play()
                 } else {
-                    setVisible(true)
+                    expanded = true
                     showSideBar.play()
                 }
             }

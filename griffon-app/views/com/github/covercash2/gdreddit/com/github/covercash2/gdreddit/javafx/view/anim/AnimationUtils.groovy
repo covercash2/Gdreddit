@@ -10,7 +10,7 @@ import javafx.util.Duration
  * Created by covercash on 7/31/15.
  */
 class AnimationUtils {
-    static final long ANIMATION_DURATION = 250
+    static final long ANIMATION_DURATION = 500
 
     static Transition hideRight(final Region region, final double expandedWidth) {
         Transition t = new Transition() {
@@ -36,6 +36,23 @@ class AnimationUtils {
             region.styleClass.add('show-right')
         }))
 
+        return t
+    }
+
+    static Transition hideRightPartial(
+            final Region region,
+            final double expandedWidth,
+            final double minWidth) {
+        Transition t = new Transition() {
+            { setCycleDuration(Duration.millis(ANIMATION_DURATION)) }
+            @Override
+            protected void interpolate(double frac) {
+                final double curWidth = expandedWidth * (1.0 - frac)
+                if (curWidth >= minWidth) {
+                    region.setPrefWidth(curWidth)
+                }
+            }
+        }
         return t
     }
 
