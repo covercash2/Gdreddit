@@ -6,12 +6,13 @@ import javafx.animation.Animation
 import javafx.geometry.Pos
 import javafx.scene.Node
 import javafx.scene.control.Button
+import javafx.scene.layout.HBox
 import javafx.scene.layout.VBox
 
 /**
  * based on  https://gist.github.com/jewelsea/1437374
  */
-class SideBar extends VBox {
+class SideBar extends HBox {
     static final long ANIMATION_DURATION = 250
     static final long HIDDEN_WIDTH = 28.0
     Button controlButton
