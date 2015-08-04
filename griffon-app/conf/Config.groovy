@@ -30,7 +30,7 @@ mvcGroups {
     }
 
     'sidebar' {
-        model       = 'com.github.covercash2.gdreddit.FeedModel'
+        model       = 'com.github.covercash2.gdreddit.SideBarModel'
         view        = 'com.github.covercash2.gdreddit.SideBarView'
         controller  = 'com.github.covercash2.gdreddit.SideBarController'
     }
